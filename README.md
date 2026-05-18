@@ -21,7 +21,7 @@ Library works without any of these. Web falls back to `navigator.language` for l
 Call `useNekoAnalyticsSetup` once at app root. Handles device ID, session lifecycle, ping loop, flush loop, app state listeners, and (on web) user interaction tracking.
 
 ```jsx
-import { useNekoAnalyticsSetup } from './external/analytics'
+import { useNekoAnalyticsSetup } from '@neko-os/analytics'
 
 useNekoAnalyticsSetup({
   apiUrl: process.env.EXPO_PUBLIC_ANALYTICS_API,
@@ -73,7 +73,7 @@ Default 30 min sessionTimeout matches GA4, Firebase, Mixpanel, Amplitude, PostHo
 ### NekoAnalytics namespace (callable from anywhere, not React-only)
 
 ```js
-import { NekoAnalytics } from './external/analytics'
+import { NekoAnalytics } from '@neko-os/analytics'
 ```
 
 | Method | Description |
@@ -92,7 +92,7 @@ import { NekoAnalytics } from './external/analytics'
 
 ```jsx
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native'
-import { NekoAnalytics } from './external/analytics'
+import { NekoAnalytics } from '@neko-os/analytics'
 
 function App() {
   const navigationRef = useNavigationContainerRef()
@@ -113,7 +113,7 @@ function App() {
 ```jsx
 import { useEffect } from 'react'
 import { BrowserRouter, useLocation } from 'react-router-dom'
-import { NekoAnalytics } from './external/analytics'
+import { NekoAnalytics } from '@neko-os/analytics'
 
 function ScreenTracker() {
   const location = useLocation()
@@ -146,7 +146,7 @@ Captures duration users spend on each screen. Sent to `POST /rest/analytics_acce
 **Per-component opt-in:** Use `useAnalyticsAccess` to track specific components (e.g. modals, full-screen views without router integration):
 
 ```jsx
-import { useAnalyticsAccess } from './external/analytics'
+import { useAnalyticsAccess } from '@neko-os/analytics'
 
 function CheckoutModal() {
   useAnalyticsAccess('CheckoutModal')
@@ -159,7 +159,7 @@ function CheckoutModal() {
 ```jsx
 import { useCallback } from 'react'
 import { useFocusEffect } from '@react-navigation/native'
-import { NekoAnalytics } from './external/analytics'
+import { NekoAnalytics } from '@neko-os/analytics'
 
 function HomeScreen() {
   useFocusEffect(useCallback(() => {
@@ -197,7 +197,7 @@ Captures JS errors and unhandled promise rejections. Sent to `POST /rest/analyti
 **Manual:**
 
 ```js
-import { NekoAnalytics } from './external/analytics'
+import { NekoAnalytics } from '@neko-os/analytics'
 
 try {
   doSomething()
@@ -215,7 +215,7 @@ try {
 **React Error Boundary:** Use the built-in `<NekoAnalyticsBoundary>` to catch component render errors and report them as `type: 'react'`.
 
 ```jsx
-import { NekoAnalyticsBoundary } from './external/analytics'
+import { NekoAnalyticsBoundary } from '@neko-os/analytics'
 
 function App() {
   return (
@@ -258,7 +258,7 @@ Boundary catches errors during render/lifecycle of children. Won't catch async e
 ### Tracking Events
 
 ```js
-import { NekoAnalytics } from './external/analytics'
+import { NekoAnalytics } from '@neko-os/analytics'
 
 // Just a name
 NekoAnalytics.event('button_click')
